@@ -46,7 +46,7 @@ with app.app_context():
     "Barbecue Bacon Pizza": ["BBQ Sauce", "Mozzarella Cheese", "Bacon", "Red Onions", "Cilantro"]
     }
 
-    
+
     pizza_name = []
     pizza_ingredient= []
     for pizza in (pizza_data.items()):
@@ -63,3 +63,26 @@ with app.app_context():
     db.session.add_all(pizza_list)
     db.session.commit()
 
+
+    '''------------ P I Z Z A----R E S T A U R A N T  -------------'''
+    RestaurantPizza.query.delete()
+    restaurant_pizza_list = []
+    for rest in restaurant_list:
+        for i in range(randint(1,15)):
+            rp = RestaurantPizza(
+                price = 'KSH. ' + str(random.randint(200,2000)),
+                restaurant = rest,
+                pizza = rc(pizza_list)
+            )
+            restaurant_pizza_list.append(rp)
+
+    db.session.add_all(restaurant_pizza_list)
+    db.session.commit()
+
+
+    # r1=(restaurant_list[0])
+    # rp=(restaurant_pizza_list[0])
+    # p1=(pizza_list[0])
+    # print("-->RESTAURANT name--->>",r1.pizzas[0].name)
+    # print("--> PIZZA name--->>",p1.restaurants[0].name)
+  
