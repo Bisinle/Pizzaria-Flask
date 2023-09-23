@@ -16,6 +16,21 @@ class Restaurant(db.Model, SerializerMixin):
 
 
 
+class RestaurantPizza(db.Model,SerializerMixin):
+    __tablename__='restaurant_pizzas'
+
+
+    id = db.Column(db.Integer, primary_key=True)
+    price = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+
+
+    
+
+
+
 
 
 class Pizza(db.Model, SerializerMixin):
