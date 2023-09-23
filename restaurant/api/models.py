@@ -8,3 +8,20 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
+class Restaurant(db.Model, SerializerMixin):
+    __tablename__ = 'restaurants'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+
+class Pizza(db.Model, SerializerMixin):
+    __tablename__ = 'pizzas'
+
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    ingredients = db.Column(db.String)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
