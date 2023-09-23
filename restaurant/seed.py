@@ -45,6 +45,7 @@ with app.app_context():
     "Spinach and Feta Pizza": ["Tomato Sauce", "Mozzarella Cheese", "Spinach", "Feta Cheese", "Garlic"],
     "Barbecue Bacon Pizza": ["BBQ Sauce", "Mozzarella Cheese", "Bacon", "Red Onions", "Cilantro"]
     }
+
     
     pizza_name = []
     pizza_ingredient= []
