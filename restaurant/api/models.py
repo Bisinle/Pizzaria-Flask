@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import MetaData
+from sqlalchemy import MetaData,UniqueConstraint
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 
@@ -11,21 +11,30 @@ db = SQLAlchemy(metadata=metadata)
 
 class Restaurant(db.Model, SerializerMixin):
     __tablename__ = 'restaurants'
+    
+    serialize_rules = ('-rest_pizza_association.restaurant','pizzas',)
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+    address = db.Column(db.String)
+    UniqueConstraint('name', name='unique_rest_name')
+
 
 
     # relationship
-    rest_pizza_association = db.relationship('RestaurantPizza', back_populates ='restaurant')
+    rest_pizza_association = db.relationship('RestaurantPizza', back_populates ='restaurant',cascade='all, delete-orphan')
     pizzas = association_proxy('rest_pizza_association', 'pizza')
 
 
     def __repr__(self):
-        return f'(id: {self.id}, name: {self.name})'
+        return f'(id: {self.id}, name: {self.name}. address: {self.address})'
 
 
 class RestaurantPizza(db.Model,SerializerMixin):
     __tablename__='restaurant_pizzas'
+
+    serialize_rules =('-pizza', '-restaurant',)
+
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
@@ -45,6 +54,11 @@ class RestaurantPizza(db.Model,SerializerMixin):
 
 class Pizza(db.Model, SerializerMixin):
     __tablename__ = 'pizzas'
+
+
+    serialize_rules = ('-rest_pizza_association',)
+
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     ingredients = db.Column(db.String)

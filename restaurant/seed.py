@@ -18,7 +18,8 @@ with app.app_context():
     # using list comprehension to populate
     foods = ['foods','peverages','bites','specials','dessert','breakfast','Pizzas','Burgers','appetizers',]
     restaurant_list = [Restaurant(
-        name = fake.unique.company() + f" {random.choice(foods)}"  )
+        name = fake.unique.company() + f" {random.choice(foods)}",
+        address = fake.address()  )
     for i in range(15)
     ]
     db.session.add_all(restaurant_list)
@@ -80,9 +81,9 @@ with app.app_context():
     db.session.commit()
 
 
-    # r1=(restaurant_list[0])
-    # rp=(restaurant_pizza_list[0])
-    # p1=(pizza_list[0])
-    # print("-->RESTAURANT name--->>",r1.pizzas[0].name)
-    # print("--> PIZZA name--->>",p1.restaurants[0].name)
+    restaurant1=(restaurant_list[0])
+    rp=(restaurant_pizza_list[0])
+    pizza1=(pizza_list[0])
+    # print(restaurant1.pizzas[0]) 
+    print(pizza1.restaurants[0].pizzas[0].restaurants[0])
   
