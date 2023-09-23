@@ -71,7 +71,7 @@ with app.app_context():
     for rest in restaurant_list:
         for i in range(randint(1,15)):
             rp = RestaurantPizza(
-                price = 'KSH. ' + str(random.randint(200,2000)),
+                price =(random.randint(1,30)),
                 restaurant = rest,
                 pizza = rc(pizza_list)
             )
