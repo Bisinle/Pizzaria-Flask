@@ -45,6 +45,14 @@ class TestRestaurantsRoute():
         data = json.loads(response.data.decode())
         assert "pizzas" in data and isinstance(data["pizzas"], list)
 
+    def test_restaurant_model_has_validates_decorator(sefl):
+        '''the Restaurant model has a name validator'''
+        assert hasattr(Restaurant, 'name_validation,repr')
+
+    def test_restaurant_model_has_correct_columns(sefl):
+        '''the Restaurant model has a name validator'''
+        assert hasattr(Restaurant, 'name_validation,repr')
+
 
 
 
