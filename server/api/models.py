@@ -60,10 +60,11 @@ class RestaurantPizza(db.Model,SerializerMixin):
     # ------------------------------------------validations
     @validates('price')
     def price_validation(self, key, price):
-        if price>30:
+        if int(price) > 30:
             raise ValueError('Price must be between KSH 1 and KSH 30')
         
         return '$ ' + str(price)
+    
     
 
 

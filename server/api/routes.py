@@ -97,7 +97,7 @@ class RestaurantPpizzas(Resource):
         restaurant_pizza = RestaurantPizza(
             price =request.form.get('price'),
             pizza_id= request.form.get('pizza_id'),
-            restaurant_id='KSH.'+ str(request.form.get('restaurant_id')),
+            restaurant_id=request.form.get('restaurant_id'),
         
         )
         db.session.add(restaurant_pizza)

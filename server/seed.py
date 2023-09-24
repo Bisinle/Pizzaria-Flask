@@ -81,9 +81,9 @@ with app.app_context():
     db.session.commit()
 
 
-    restaurant1=(restaurant_list[0])
-    rp=(restaurant_pizza_list[0])
-    pizza1=(pizza_list[0])
-    # print(restaurant1.pizzas[0]) 
-    print(pizza1.restaurants[0].pizzas[0].restaurants[0])
+    # restaurant1=(restaurant_list[0])
+    # rp=(restaurant_pizza_list[0])
+    # pizza1=(pizza_list[0])
+    # # print(restaurant1.pizzas[0]) 
+    # print(pizza1.restaurants[0].pizzas[0].restaurants[0])
   
