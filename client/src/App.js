@@ -11,7 +11,7 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("/pizzas")
+    fetch("https://pizzaria-kk81.onrender.com//pizzas")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
