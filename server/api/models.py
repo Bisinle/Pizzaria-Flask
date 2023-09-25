@@ -46,6 +46,7 @@ class RestaurantPizza(db.Model,SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
+  
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     pizza_id = db.Column('pizza_id',db.Integer, db.ForeignKey('pizzas.id'))
@@ -84,6 +85,7 @@ class Pizza(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+    image = db.Column(db.String)
     ingredients = db.Column(db.String)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
@@ -93,6 +95,8 @@ class Pizza(db.Model, SerializerMixin):
     restaurants = association_proxy('rest_pizza_association', 'restaurant')
     
 
+    def get_price(self):
+        return self.rest_pizza_association[0].price
 
     def __repr__(self):
         return f'(id: {self.id}, name: {self.name}, pizza_id: {self.ingredients}, restaurant_id: {self.created_at})'

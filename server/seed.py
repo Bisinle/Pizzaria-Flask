@@ -47,16 +47,34 @@ with app.app_context():
     "Barbecue Bacon Pizza": ["BBQ Sauce", "Mozzarella Cheese", "Bacon", "Red Onions", "Cilantro"]
     }
 
+    pizza_images = [
+            ' https://img.freepik.com/free-photo/freshly-italian-pizza-with-mozzarella-cheese-slice-generative-ai_188544-12347.jpg',
+            'https://img.freepik.com/premium-photo/pizza-black-background-with-lot-smoke-flames_856795-7657.jpg?w=2000 ',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt_ygZJzyQLzNMc7-as8hn509cNW00ywtO0mtokJKr&s ',
+            'https://t3.ftcdn.net/jpg/05/60/70/82/360_F_560708240_pMZPOuSfvblWGRoaiZFLT4wiFTzQPwQe.jpg ',
+            'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBKO880ew0WLj8NVk0KAixAawN4ZtFWfPsB8U3suTafQc8gYgoH_rSxUYPyp9VIad4k_k&usqp=CAU',
+            'https://t4.ftcdn.net/jpg/00/71/27/57/360_F_71275778_e4d7y5ADlApa9g0A4tm0Jqc5Q3FznuGI.jpg',
+            'https://i.etsystatic.com/27713397/r/il/b82145/4266698419/il_fullxfull.4266698419_7xfm.jpg',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrDaIPHlALcF8P_BOc1x51G8GTGlTbIvTBTg&usqp=CAU',
+            'https://media.istockphoto.com/id/489809469/photo/bbq-chicken-pizza.jpg?s=612x612&w=0&k=20&c=kB3xRU4-A7fJ9iYpIzlOqSiLX4f6OIath45yFOmqjxQ=',
+            
+    ]
 
     pizza_name = []
     pizza_ingredient= []
+   
     for pizza in (pizza_data.items()):
         pizza_name.append(pizza[0])
         pizza_ingredient.append(",".join(pizza[1]))
+
    
     pizza_list = [Pizza(
         name =pizza_name[i],
-        ingredients=pizza_ingredient[i])
+        ingredients=pizza_ingredient[i],
+        image = random.choice(pizza_images)
+        
+        )
         
         for i in range(15)
     ]
@@ -81,9 +99,9 @@ with app.app_context():
     db.session.commit()
 
 
-    # restaurant1=(restaurant_list[0])
-    # rp=(restaurant_pizza_list[0])
-    # pizza1=(pizza_list[0])
-    # # print(restaurant1.pizzas[0]) 
-    # print(pizza1.restaurants[0].pizzas[0].restaurants[0])
+    restaurant1=(restaurant_list[0])
+    rp=(restaurant_pizza_list[0])
+    pizza1=(pizza_list[0])
+    print(restaurant1.pizzas[0].rest_pizza_association[0].price) 
+    # print(pizza1.restaurants[0].pizza)
   

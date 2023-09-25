@@ -67,6 +67,10 @@ class Pizzas(Resource):
             pizza_dict_list =[]
             for pizza in pizzas:
                 pizza_dict = pizza.to_dict()
+                # get the price of the pizza
+                pizza_price = pizza.get_price()
+                pizza_dict.update({'price': pizza_price})
+
                 pizza_dict_list.append(pizza_dict)
             return make_response(pizza_dict_list,200)
 
