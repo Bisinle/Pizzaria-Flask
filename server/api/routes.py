@@ -8,6 +8,21 @@ from api.models import Restaurant,RestaurantPizza,Pizza,db,SerializerMixin
 
 
 class Restaurants(Resource):
+    def home(self):
+        restaurants = Restaurant.query.all()
+
+        restaurant_dict_list =[]
+        for restaurant in restaurants:
+            restuarant_dict = {
+                "id":restaurant.id,
+                "name":restaurant.name,
+                "address":restaurant.address
+            }
+            restaurant_dict_list.append(restuarant_dict)
+        
+
+        return make_response(restaurant_dict_list,200)
+
     def get(self):
         restaurants = Restaurant.query.all()
 
@@ -23,7 +38,7 @@ class Restaurants(Resource):
         response_data = {'restaurants':restaurant_dict_list}
         return make_response(response_data,200)
 
-api.add_resource(Restaurants, '/restaurants')
+api.add_resource(Restaurants, '/')
 
 
 
