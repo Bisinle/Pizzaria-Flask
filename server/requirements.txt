@@ -25,4 +25,4 @@ SQLAlchemy==2.0.21
 SQLAlchemy-serializer==1.4.1
 tomli==2.0.1
 typing_extensions==4.7.1
-Werkzeug==2.3.7
+Werkzeug==2.2.3
