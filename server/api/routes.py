@@ -19,9 +19,16 @@ class Restaurants(Resource):
                 "address":restaurant.address
             }
             restaurant_dict_list.append(restuarant_dict)
-        return make_response(restaurant_dict_list,200)
+        
+        response_data = {'restaurants':restaurant_dict_list}
+        return make_response(response_data,200)
 
 api.add_resource(Restaurants, '/restaurants')
+
+
+
+
+
 
 class Restaurants_by_ID(Resource,SerializerMixin):
     def get(self,id):
@@ -72,7 +79,10 @@ class Pizzas(Resource):
                 pizza_dict.update({'price': pizza_price})
 
                 pizza_dict_list.append(pizza_dict)
-            return make_response(pizza_dict_list,200)
+
+
+            response_data = {'pizzas':pizza_dict_list}            
+            return make_response(response_data,200)
 
 
 
