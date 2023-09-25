@@ -3,14 +3,12 @@ import random
 from random import randint, choice as rc
 
 from faker import Faker
-from faker_food import FoodProvider
+
 
 from api import app
 from api.models import db, Restaurant,Pizza,RestaurantPizza
 
 fake = Faker()
-fake.add_provider(FoodProvider)
-
 
 with app.app_context():
     ''' ----------------R E S T A U R A N T-------------- '''
