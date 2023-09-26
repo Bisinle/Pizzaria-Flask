@@ -35,8 +35,8 @@ class Restaurants(Resource):
             }
             restaurant_dict_list.append(restuarant_dict)
         
-        response_data = {'restaurants':restaurant_dict_list}
-        return make_response(response_data,200)
+        
+        return make_response(restaurant_dict_list,200)
 
 api.add_resource(Restaurants, '/')
 
@@ -96,8 +96,8 @@ class Pizzas(Resource):
                 pizza_dict_list.append(pizza_dict)
 
 
-            response_data = {'pizzas':pizza_dict_list}            
-            return make_response(response_data,200)
+            # response_data = {'pizzas':pizza_dict_list}            
+            return make_response(pizza_dict_list,200)
 
 
 
