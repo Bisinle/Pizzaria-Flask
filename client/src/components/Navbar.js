@@ -15,14 +15,8 @@ function Navbar() {
       <header>
         <nav>
           <h1>PIZZARIA</h1>
-          <NavLink style={navStyle} to="/">
-            Home
-          </NavLink>
-          <NavLink style={navStyle} to="/About">
-            Restaurants
-          </NavLink>
-          <NavLink style={navStyle} to="/Contacts">
-            Pizza
+          <NavLink style={navStyle} to="/Pizzas">
+            Pizzas
           </NavLink>
         </nav>
       </header>

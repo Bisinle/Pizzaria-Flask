@@ -1,6 +1,6 @@
 import Restaurant from "./Restaurant";
 
-function Home({ restaurants }) {
+function Pizzas({ restaurants }) {
   const mapped = restaurants.map((res) => (
     <span key={res.id}>
       <Restaurant
@@ -16,4 +16,4 @@ function Home({ restaurants }) {
   return <div className="home">{mapped}</div>;
 }
 
-export default Home;
+export default Pizzas;

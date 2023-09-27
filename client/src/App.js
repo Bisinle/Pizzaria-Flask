@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import About from "./components/About";
+import Pizzas from "./components/Pizzas";
+import About from "./components/Rest";
 import Contacts from "./components/Contacts";
 
 import { useEffect, useState } from "react";
@@ -20,9 +20,9 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home restaurants={data} />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contacts />} />
+        <Route path="about" element={<Rest />} />
+        <Route path="/pizzas" element={<Pizzas restaurants={data} />} />
+        {/* <Route path="contact" element={<Contacts />} /> */}
       </Routes>
     </div>
   );
