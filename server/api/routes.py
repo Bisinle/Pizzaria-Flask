@@ -1,13 +1,20 @@
-from api import api,make_response,jsonify,app
+from api import make_response,jsonify,app
 from flask import request
-from flask_restful import Resource
+# from flask_restful import Resource
+from flask_restx import Api,Resource,Namespace
 from api.models import Restaurant,RestaurantPizza,Pizza,db,SerializerMixin
 
 
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+app.config['JSON_SORT_KEYS'] =False
 
 
+api = Api()
+api.init_app(app)
+RX=Namespace('api')
+api.add_namespace(RX)
 
+@RX.route('/')
 class Restaurants(Resource):
     def home(self):
         restaurants = Restaurant.query.all()
@@ -39,13 +46,13 @@ class Restaurants(Resource):
         
         return make_response(restaurant_dict_list,200)
 
-api.add_resource(Restaurants, '/')
+# api.add_resource(Restaurants, '/')
 
 
 
 
 
-
+@RX.route('/restaurants/<int:id>')
 class Restaurants_by_ID(Resource,SerializerMixin):
     def get(self,id):
         restaurant = Restaurant.query.filter_by(id=id).first()
@@ -79,10 +86,9 @@ class Restaurants_by_ID(Resource,SerializerMixin):
 
 
 
-api.add_resource(Restaurants_by_ID, '/restaurants/<int:id>')
 
 
-
+@RX.route('/pizzas')
 class Pizzas(Resource):
         def get(sefl):
             pizzas = Pizza.query.all()
@@ -102,10 +108,10 @@ class Pizzas(Resource):
 
 
 
-api.add_resource(Pizzas, '/pizzas')
+# api.add_resource(Pizzas, '')
 
 
-
+@RX.route('/pizzas/<int:id>')
 class Pizzas_by_id(Resource):
         def get(sefl,id):
             pizza = Pizza.query.filter_by(id=id).first()
@@ -117,11 +123,10 @@ class Pizzas_by_id(Resource):
 
 
 
-api.add_resource(Pizzas_by_id, '/pizzas/<int:id>')
 
 
 
-
+@RX.route('/restaurant_pizzas')
 class RestaurantPpizzas(Resource):
      def post(self):
         restaurant_pizza = RestaurantPizza(
@@ -144,6 +149,6 @@ class RestaurantPpizzas(Resource):
 
           
 
-api.add_resource(RestaurantPpizzas, '/restaurant_pizzas')
+
 
 
