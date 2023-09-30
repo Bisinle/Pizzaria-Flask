@@ -15,7 +15,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
-  console.log(data);
+  // console.log(data);
   return (
     <div className="App">
       <Navbar />
